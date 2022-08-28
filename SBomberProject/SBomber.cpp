@@ -63,6 +63,7 @@ SBomber::SBomber()
     pHouse->SetPos(80, groundY - 1);
     vecStaticObj.push_back(pHouse);
 
+	//bombIt = new BombIterator(SBomber::vecDynamicObj);
     /*
     Bomb* pBomb = new Bomb;
     pBomb->SetDirection(0.3, 1);
@@ -121,18 +122,32 @@ void SBomber::CheckPlaneAndLevelGUI()
     }
 }
 
+BombIterator begin(vector<Bomb*>& vecBombs) {
+	BombIterator it(vecBombs);
+	return it;
+}
+
+BombIterator end(vector<Bomb*>& vecBombs) {
+	BombIterator it(vecBombs);
+	it.reset();
+	return it;
+}
+
+
 void SBomber::CheckBombsAndGround() 
 {
-    vector<Bomb*> vecBombs = FindAllBombs();
+	BombIterator bombIt;
+	vector<Bomb*> vecBombs = bombIt.FindAllBombs(vecDynamicObj);
+	bombIt = begin(vecBombs);
     Ground* pGround = FindGround();
     const double y = pGround->GetY();
-    for (size_t i = 0; i < vecBombs.size(); i++)
+    for (; bombIt != end(vecBombs); ++bombIt)
     {
-        if (vecBombs[i]->GetY() >= y) // Пересечение бомбы с землей
+        if ((*bombIt)->GetY() >= y) // Пересечение бомбы с землей
         {
-            pGround->AddCrater(vecBombs[i]->GetX());
-            CheckDestoyableObjects(vecBombs[i]);
-            DeleteDynamicObj(vecBombs[i]);
+            pGround->AddCrater((*bombIt)->GetX());
+            CheckDestoyableObjects((*bombIt));
+            DeleteDynamicObj((*bombIt));
         }
     }
 
@@ -222,21 +237,6 @@ Ground* SBomber::FindGround() const
     return nullptr;
 }
 
-vector<Bomb*> SBomber::FindAllBombs() const
-{
-    vector<Bomb*> vecBombs;
-
-    for (size_t i = 0; i < vecDynamicObj.size(); i++)
-    {
-        Bomb* pBomb = dynamic_cast<Bomb*>(vecDynamicObj[i]);
-        if (pBomb != nullptr)
-        {
-            vecBombs.push_back(pBomb);
-        }
-    }
-
-    return vecBombs;
-}
 
 Plane* SBomber::FindPlane() const
 {

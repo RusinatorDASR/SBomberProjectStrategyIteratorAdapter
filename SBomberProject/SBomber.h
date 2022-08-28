@@ -9,6 +9,7 @@
 #include "Bomb.h"
 #include "Ground.h"
 #include "Tank.h"
+#include "BombIterator.h"
 
 class SBomber
 {
@@ -27,6 +28,7 @@ public:
     void MoveObjects();
     void CheckObjects();
 
+
 private:
 
     void CheckPlaneAndLevelGUI();
@@ -40,14 +42,18 @@ private:
     Plane * FindPlane() const;
     AbstractLevelGUI * FindLevelGUI() const;
     std::vector<DestroyableGroundObject*> FindDestoyableGroundObjects() const;
-    std::vector<Bomb*> FindAllBombs() const;
+
+	
 
     void DropBomb();
 
     std::vector<DynamicObject*> vecDynamicObj;
     std::vector<GameObject*> vecStaticObj;
     
+	static std::vector<Bomb*> vecBombs;
+
     bool exitFlag;
+
 
     uint64_t startTime, finishTime, passedTime;
     uint16_t bombsNumber, deltaTime, fps;
