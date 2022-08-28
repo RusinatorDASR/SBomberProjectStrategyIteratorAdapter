@@ -139,10 +139,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AbstractLevelGUI.cpp" />
     <ClCompile Include="Bomb.cpp" />
     <ClCompile Include="Ground.cpp" />
     <ClCompile Include="House.cpp" />
     <ClCompile Include="LevelGUI.cpp" />
+    <ClCompile Include="LevelGUI_1.cpp" />
+    <ClCompile Include="LevelGUI_2.cpp" />
     <ClCompile Include="MyTools.cpp">
       <LanguageStandard Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">stdcpp17</LanguageStandard>
     </ClCompile>
@@ -154,12 +157,15 @@
     <ClCompile Include="Tank.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AbstractLevelGUI.h" />
     <ClInclude Include="Bomb.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="DynamicObject.h" />
     <ClInclude Include="Ground.h" />
     <ClInclude Include="DestroyableGroundObject.h" />
     <ClInclude Include="FileLoggerSingleton.h" />
+    <ClInclude Include="LevelGUI_1.h" />
+    <ClInclude Include="LevelGUI_2.h" />
     <ClInclude Include="ScreenSingleton.h" />
     <ClInclude Include="House.h" />
     <ClInclude Include="LevelGUI.h" />

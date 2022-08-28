@@ -2,7 +2,9 @@
 
 #include <vector>
 
-#include "LevelGUI.h"
+#include "AbstractLevelGUI.h"
+#include "LevelGUI_1.h"
+#include "LevelGUI_2.h"
 #include "Plane.h"
 #include "Bomb.h"
 #include "Ground.h"
@@ -33,10 +35,10 @@ private:
 
     void __fastcall DeleteDynamicObj(DynamicObject * pBomb);
     void __fastcall DeleteStaticObj(GameObject* pObj);
-
+	void SetLevelGUI(AbstractLevelGUI* pGUI);
     Ground * FindGround() const;
     Plane * FindPlane() const;
-    LevelGUI * FindLevelGUI() const;
+    AbstractLevelGUI * FindLevelGUI() const;
     std::vector<DestroyableGroundObject*> FindDestoyableGroundObjects() const;
     std::vector<Bomb*> FindAllBombs() const;
 
