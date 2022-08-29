@@ -10,6 +10,8 @@
 #include "Ground.h"
 #include "Tank.h"
 #include "BombIterator.h"
+#include "TankAdapter.h"
+#include "TankAdaptee.h"
 
 class SBomber
 {
